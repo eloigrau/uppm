@@ -18,7 +18,6 @@ class ProfilCreationForm(UserCreationForm):
 
     def __init__(self, request, *args, **kargs):
         super(ProfilCreationForm, self).__init__(request, *args, **kargs)
-        self.fields['description'].strip = False
 
     class Meta(UserCreationForm):
         model = Profil
@@ -39,7 +38,7 @@ class ProducteurChangeForm(UserChangeForm):
     """
     email = forms.EmailField(label="Email")
     username = forms.CharField(label="Pseudonyme")
-    description = forms.CharField(required=False, label="Description", help_text="Une description de vous même",widget=SummernoteWidget)
+    #description = forms.CharField(required=False, label="Description", help_text="Une description de vous même",widget=SummernoteWidget)
     inscrit_newsletter = forms.BooleanField(required=False)
     accepter_annuaire = forms.BooleanField(required=False, label="J'accepte d'apparaitre dans l'annuaire du site et la carte et rend mon profil visible par tous")
     password=None
@@ -60,7 +59,7 @@ class ProducteurChangeForm_admin(UserChangeForm):
     """
     email = forms.EmailField(label="Email")
     username = forms.CharField(label="Pseudonyme")
-    description = forms.CharField(label="Description", initial="Une description de vous même", widget=forms.Textarea, required=False)
+    #description = forms.CharField(label="Description", initial="Une description de vous même", widget=forms.Textarea, required=False)
     inscrit_newsletter = forms.BooleanField(required=False)
     accepter_annuaire = forms.BooleanField(required=False)
 

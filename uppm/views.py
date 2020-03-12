@@ -179,8 +179,13 @@ def contact_admins(request):
     if request.method == 'POST':
         form = ContactForm(request.POST or None, )
         if form.is_valid():
-            sujet =  request.user.username + "(" + request.user.email+ ") : " + form.cleaned_data['sujet']
-            message_txt = request.user.username + "(" + request.user.email + ") a envoyé le message suivant : "
+            if request.user.is_anonymous :
+                envoyeur = "Anonyme "
+            else:
+                envoyeur = request.user.username + "(" + request.user.email+ ") "
+
+            sujet =  envoyeur + form.cleaned_data['sujet']
+            message_txt = envoyeur + ") a envoyé le message suivant : "
             message_html = form.cleaned_data['msg']
             try:
                 mail_admins(sujet, message_txt, html_message=message_html)
@@ -188,7 +193,7 @@ def contact_admins(request):
                     send_mail(sujet, "Vous avez envoyé aux administrateurs du site uppm66.herokuapp.com le message suivant : " + message_html, request.user.email, [request.user.email,], fail_silently=False, html_message=message_html)
 
                 return render(request, 'contact/message_envoye.html', {'sujet': sujet, 'msg': message_html,
-                                                       'envoyeur': request.user.username + " (" + request.user.email + ")",
+                                                       'envoyeur': envoyeur,
                                                        "destinataire": "administrateurs "})
             except BadHeaderError:
                 return render(request, 'erreur.html', {'msg':'Invalid header found.'})
