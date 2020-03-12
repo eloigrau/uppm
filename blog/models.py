@@ -40,7 +40,7 @@ class Article(models.Model):
         choices=(Choix.type_annonce),
         default='Annonce', verbose_name="categorie")
     titre = models.CharField(max_length=100,)
-    auteur = models.ForeignKey(Profil, on_delete=models.CASCADE)
+    auteur = models.ForeignKey(Profil, on_delete=models.CASCADE, default=None)
     slug = models.SlugField(max_length=100)
     contenu = models.TextField(null=True)
     date_creation = models.DateTimeField(verbose_name="Date de parution", default=timezone.now)

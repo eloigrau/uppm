@@ -8,21 +8,22 @@
 {% block subtitle %}
 <div class="row">
 	<div class="col-md-12">
-		<h4 class = "textcenter rowbienvenue">{% trans "Bienvenue sur le site du uppm pour la Transition " %}</h4>
-		<h5>du Collectif de la communauté de communes "Albères, Côte Vermeille, Illibéris"</h5>
+		<h4 class = "textcenter rowbienvenue">{% trans "Bienvenue sur le forum" %}</h4>
+		<h5>  de l'Université Populaire Pyrénées Méditerranée </h5>
 	</div>
 </div>
 <hr>
-<div class="row">
-	<div class="col-sm-12">
-		<img class="imgbienvenue" src="{{STATIC_URL}}img/logo_nom.png" alt="logo du Pacte pour la Transition" >
-	</div></div>
-<hr>
+
 <div class="row">
 	<div class="col-sm-12">
 
 	 {% if not request.user.is_authenticated %}
-		<hr>
+		<div class="row" >
+		  <div class="col-sm-12 textcenter">
+			   <b> <a href="{% url 'login' %}" class="btn btn-light btn-radius"><i class="fa fa-user"></i> Se connecter...</a>
+			  </b>
+		  </div>
+		</div>
 		<div class="row" >
 		  <div class="col-sm-12 textcenter">
 			  <b> <a href="{% url 'inscription_newsletter' %}" class="btn btn-light btn-radius"><i class="fa fa-envelope-o"></i> S'inscrire à la newsletter...</a>
@@ -30,10 +31,9 @@
 			  </b>
 		  </div>
 		</div>
+		<hr>
 
 	{%else%}
-
-		<hr>
 		<div class="row" >
 		  <div class="col-sm-12 textcenter" style ="color:#0f7407;">
 			{% if nbNotif %}
