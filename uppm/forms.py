@@ -7,8 +7,8 @@ from django_summernote.widgets import SummernoteWidget
 
 class ProfilCreationForm(UserCreationForm):
     username = forms.CharField(label="Pseudonyme*", help_text="Attention les majuscules sont importantes...")
-    description = forms.CharField(label=None, help_text="Une description de vous même", required=False, widget=forms.Textarea)
-    site_web = forms.CharField(label="Site web", help_text="n'oubliez pas le https://", required=False)
+    #description = forms.CharField(label=None, help_text="Une description de vous même", required=False, widget=forms.Textarea)
+    #site_web = forms.CharField(label="Site web", help_text="n'oubliez pas le https://", required=False)
     captcha = CaptchaField()
     email = forms.EmailField(label="Email*",)
 
@@ -22,7 +22,7 @@ class ProfilCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = Profil
-        fields = ['username', 'password1',  'password2', 'first_name', 'last_name', 'email', 'site_web', 'description', 'code_postal', 'commune', 'inscrit_newsletter', 'accepter_annuaire',  'accepter_conditions']
+        fields = ['username', 'password1',  'password2', 'email', 'telephone', 'inscrit_newsletter', 'accepter_annuaire',  'accepter_conditions']
         exclude = ['slug', ]
 
 
@@ -50,7 +50,7 @@ class ProducteurChangeForm(UserChangeForm):
 
     class Meta:
         model = Profil
-        fields = ['username', 'first_name', 'last_name', 'email', 'site_web', 'description', 'telephone', 'code_postal', 'commune', 'accepter_annuaire', 'inscrit_newsletter']
+        fields = ['username', 'first_name', 'last_name', 'email',  'telephone', 'code_postal', 'accepter_annuaire', 'inscrit_newsletter']
 
 
 class ProducteurChangeForm_admin(UserChangeForm):
@@ -68,7 +68,7 @@ class ProducteurChangeForm_admin(UserChangeForm):
 
     class Meta:
         model = Profil
-        fields = ['username', 'email', 'description', 'code_postal', 'commune',  'telephone', 'inscrit_newsletter', 'accepter_annuaire', 'statut_adhesion']
+        fields = ['username', 'email', 'code_postal',  'telephone', 'inscrit_newsletter', 'accepter_annuaire', 'statut_adhesion']
 
     def __init__(self, *args, **kwargs):
         super(ProducteurChangeForm_admin, self).__init__(*args, **kwargs)

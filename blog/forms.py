@@ -6,7 +6,7 @@ import itertools
 #from tinymce.widgets import TinyMCE
 from django_summernote.widgets import SummernoteWidget, SummernoteWidgetBase, SummernoteInplaceWidget
 from django.urls import reverse
-from pacte.settings import SUMMERNOTE_CONFIG as summernote_config
+from uppm.settings import SUMMERNOTE_CONFIG as summernote_config
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 

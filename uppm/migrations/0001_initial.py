@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('site_web', models.URLField(blank=True, null=True)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('date_registration', models.DateTimeField(editable=False, verbose_name='Date de création')),
-                ('inscrit_newsletter', models.BooleanField(default=False, verbose_name="J'accepte de recevoir des emails de PacteACVI")),
+                ('inscrit_newsletter', models.BooleanField(default=False, verbose_name="J'accepte de recevoir des emails de UPPM")),
                 ('accepter_conditions', models.BooleanField(default=False, verbose_name="J'ai lu et j'accepte les conditions d'utilisation du site")),
                 ('accepter_annuaire', models.BooleanField(default=True, verbose_name="J'accepte d'apparaitre dans l'annuaire du site et la carte et rend mon profil visible par tous")),
                 ('date_notifications', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Date de validation des notifications')),
@@ -97,7 +97,7 @@ class Migration(migrations.Migration):
                 ('message', models.TextField()),
                 ('date_creation', models.DateTimeField(auto_now_add=True)),
                 ('auteur', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('conversation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pacte.Conversation')),
+                ('conversation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='uppm.Conversation')),
             ],
         ),
     ]

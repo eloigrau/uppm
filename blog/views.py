@@ -12,7 +12,7 @@ from actstream.models import followers, following
 from django.utils.timezone import now
 
 #from django.contrib.contenttypes.models import ContentType
-from pacte.models import Suivis
+from uppm.models import Suivis
 from django.views.decorators.csrf import csrf_exempt
 
 # @login_required

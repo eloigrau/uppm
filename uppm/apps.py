@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
-class PacteConfig(AppConfig):
-    name = 'pacte'
+class UppmConfig(AppConfig):
+    name = 'uppm'
 
     def ready(self):
         from actstream import registry

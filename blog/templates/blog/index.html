@@ -15,7 +15,7 @@
     {% if request.GET.categorie  %}
       Articles de la catégorie: {{categorie_courante}}
       {%elif request.GET.permacat %}
-      Articles PacteACVI
+      Articles UPPM
       {%elif request.GET.auteur %}
       Articles de {{request.GET.auteur}}
       {%elif typeFiltre == 'archives' %}
@@ -72,11 +72,11 @@
 
                 <li class="nav-item dropdown">
              <button type="button" class="btn btn-block {% if request.GET.permacat %}btn-primary{%endif%}  dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               data-target = "#idPacteACVI">
-                {% if request.GET.permacat %}{% if request.GET.permacat == "True" %}PacteACVI {%else%}Public{%endif%}{%else%}Type{%endif%}
+               data-target = "#idUPPM">
+                {% if request.GET.permacat %}{% if request.GET.permacat == "True" %}UPPM {%else%}Public{%endif%}{%else%}Type{%endif%}
                 </button>
-            <div class="dropdown-menu"  aria-labelledby="menuStatut"  id=idPacteACVI">
-                  <a class="dropdown-item" href="?permacat=True">PacteACVI</a>
+            <div class="dropdown-menu"  aria-labelledby="menuStatut"  id=idUPPM">
+                  <a class="dropdown-item" href="?permacat=True">UPPM</a>
                   <a class="dropdown-item" href="?permacat=False">Public</a>
             </div>
             </li>

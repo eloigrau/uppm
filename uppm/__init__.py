@@ -1,1 +1,1 @@
-default_app_config = 'pacte.apps.PacteConfig'
+default_app_config = 'uppm.apps.UppmConfig'

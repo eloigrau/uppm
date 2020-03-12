@@ -120,12 +120,12 @@ def annuaire(request):
 @login_required
 def listeContacts(request):
     if not request.user.is_membre_collectif:
-        return render(request, "notPacteACVI.html")
+        return render(request, "notUPPM.html")
     listeMails = [
         {"type":'user_newsletter' ,"profils":Profil.objects.filter(inscrit_newsletter=True), "titre":"Liste des inscrits à la newsletter : "},
          {"type":'anonym_newsletter' ,"profils":InscriptionNewsletter.objects.all(), "titre":"Liste des inscrits anonymes à la newsletter : "},
       {"type":'user_adherent' , "profils":Profil.objects.filter(statut_adhesion=2), "titre":"Liste des adhérents : "},
-        {"type":'user_futur_adherent', "profils":Profil.objects.filter(statut_adhesion=0), "titre":"Liste des personnes qui veulent adhérer à PacteACVI :"}
+        {"type":'user_futur_adherent', "profils":Profil.objects.filter(statut_adhesion=0), "titre":"Liste des personnes qui veulent adhérer à UPPM :"}
     ]
     return render(request, 'listeContacts.html', {"listeMails":listeMails})
 
@@ -133,7 +133,7 @@ def listeContacts(request):
 @login_required
 def listeFollowers(request):
     if not request.user.is_membre_collectif:
-        return render(request, "notPacteACVI.html")
+        return render(request, "notUPPM.html")
     listeArticles = []
     # for art in Projet.objects.all():
     #     suiveurs = followers(art)
@@ -185,7 +185,7 @@ def contact_admins(request):
             try:
                 mail_admins(sujet, message_txt, html_message=message_html)
                 if form.cleaned_data['renvoi']:
-                    send_mail(sujet, "Vous avez envoyé aux administrateurs du site pacteacvi.herokuapp.com le message suivant : " + message_html, request.user.email, [request.user.email,], fail_silently=False, html_message=message_html)
+                    send_mail(sujet, "Vous avez envoyé aux administrateurs du site uppm66.herokuapp.com le message suivant : " + message_html, request.user.email, [request.user.email,], fail_silently=False, html_message=message_html)
 
                 return render(request, 'contact/message_envoye.html', {'sujet': sujet, 'msg': message_html,
                                                        'envoyeur': request.user.username + " (" + request.user.email + ")",
@@ -325,9 +325,9 @@ def lireConversation(request, destinataire):
                     description="a envoyé un message privé à " + destinataire)
         profil_destinataire = Profil.objects.get(username=destinataire)
         if profil_destinataire in followers(conversation):
-            sujet = "PacteACVI - quelqu'un vous a envoyé une message privé"
-            message = request.user.username + " vous a envoyé un message privé. Vous pouvez y accéder en suivant ce lien : http://pacteacvi.herokuapp.com" +  url
-            send_mail(sujet, message, "pacteacvi@gmail.com", [profil_destinataire.email, ], fail_silently=False,)
+            sujet = "UPPM - quelqu'un vous a envoyé une message privé"
+            message = request.user.username + " vous a envoyé un message privé. Vous pouvez y accéder en suivant ce lien : http://uppm66.herokuapp.com" +  url
+            send_mail(sujet, message, "siteuppm66@gmail.com", [profil_destinataire.email, ], fail_silently=False,)
         return redirect(request.path)
 
     return render(request, 'lireConversation.html', {'conversation': conversation, 'form': form, 'messages_echanges': messages, 'destinataire':destinataire})
@@ -532,8 +532,8 @@ def modifier_message(request, id, type):
         obj = MessageGeneral.objects.get(id=id)
     elif type == 'permacat':
         if not request.user.is_membre_collectif:
-            return render(request, "notPacteACVI")
-        obj = MessageGeneralPacteACVI.objects.get(id=id)
+            return render(request, "notuppm")
+        obj = MessageGeneraluppm.objects.get(id=id)
     elif type == 'rtg':
         if not request.user.is_rtg:
             return render(request, "notRTG.html")

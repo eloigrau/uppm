@@ -1,5 +1,5 @@
 from django.db import models
-from pacte.models import Profil, Suivis
+from uppm.models import Profil, Suivis
 from django.urls import reverse
 from django.utils import timezone
 from django.core.mail import send_mass_mail
@@ -81,14 +81,14 @@ class Article(models.Model):
 def on_save_articles(instance, created, **kwargs):
     if created:
         suivi, created = Suivis.objects.get_or_create(nom_suivi='articles')
-        titre = "PacteACVI - nouvel article"
+        titre = "UPPM - nouvel article"
         message = " Un nouvel article a été créé " + \
-                  "\n Vous pouvez y accéder en suivant ce lien : https://pacteacvi.herokuapp.com" + instance.get_absolute_url() + \
+                  "\n Vous pouvez y accéder en suivant ce lien : https://uppm66.herokuapp.com" + instance.get_absolute_url() + \
                   "\n\n------------------------------------------------------------------------------" \
-                  "\n vous recevez cet email, car vous avez choisi de suivre les articles (en cliquant sur la cloche) sur le site https://pacteacvi.herokuapp.com/forum/articles/"
+                  "\n vous recevez cet email, car vous avez choisi de suivre les articles (en cliquant sur la cloche) sur le site https://uppm66.herokuapp.com/forum/articles/"
         emails = [suiv.email for suiv in followers(suivi) if instance.auteur != suiv and (instance.estPublic or suiv.is_membre_collectif)]
         try:
-            send_mass_mail([(titre, message, "pacteacvi@gmail.com", emails), ])
+            send_mass_mail([(titre, message, "siteuppm66@gmail.com", emails), ])
         except:
             pass
 
@@ -112,15 +112,15 @@ class Commentaire(models.Model):
 
 @receiver(post_save,  sender=Article)
 def on_save_article(instance, **kwargs):
-    titre = "PacteACVI - Article actualisé"
+    titre = "UPPM - Article actualisé"
     message = "L'article '" +  instance.titre + "' a été modifié (ou quelqu'un l'a commenté)" +\
-              "\n Vous pouvez y accéder en suivant ce lien : http://pacteacvi.herokuapp.com" + instance.get_absolute_url() + \
+              "\n Vous pouvez y accéder en suivant ce lien : http://uppm66.herokuapp.com" + instance.get_absolute_url() + \
               "\n\n------------------------------------------------------------------------------" \
-              "\n vous recevez cet email, car vous avez choisi de suivre ce projet sur le site https://pacteacvi.herokuapp.com/forum/articles/"
+              "\n vous recevez cet email, car vous avez choisi de suivre ce projet sur le site https://uppm66.herokuapp.com/forum/articles/"
    # emails = [(titre, message, "asso@perma.cat", (suiv.email, )) for suiv in followers(instance)]
     emails = [suiv.email for suiv in followers(instance)  if instance.auteur != suiv  and (instance.estPublic or suiv.is_membre_collectif)]
     try:
-        send_mass_mail([(titre, message, "pacteacvi@gmail.com", emails), ])
+        send_mass_mail([(titre, message, "siteuppm66@gmail.com", emails), ])
     except:
         pass
 

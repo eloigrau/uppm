@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.conf.urls import include, url
-from pacte import views
+from uppm import views
 from django.views.generic import TemplateView
 from .views import handler400 as h400, handler403  as h403, handler404  as h404, handler500  as h500
 
@@ -78,7 +78,7 @@ urlpatterns = [
 
 
 urlpatterns += [
-    url(r'^robots\.txt$', TemplateView.as_view(template_name="pacte/robots.txt", content_type='text/plain')),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name="uppm/robots.txt", content_type='text/plain')),
 ]
 
 from django.conf import settings

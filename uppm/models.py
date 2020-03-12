@@ -32,7 +32,7 @@ DEGTORAD=3.141592654/180
 class Choix():
     statut_adhesion = (('', '-----------'),
                    (0, _("Je souhaite devenir membre du collectif ACVI et utiliser le site")),
-                   (1, _("Je suis membre d'un autre collectif du pacte pour la transition")),
+                   (1, _("Je suis membre d'un autre collectif du uppm pour la transition")),
                    (2, _("Je suis membre du collectif ACVI")))
 
 
@@ -40,17 +40,12 @@ LATITUDE_DEFAUT = '42.6976'
 LONGITUDE_DEFAUT = '2.8954'
 
 class Profil(AbstractUser):
-
-    site_web = models.URLField(null=True, blank=True)
-    code_postal = models.CharField(max_length=5, blank=True, null=True, default="66000")
-    commune = models.CharField(max_length=50, blank=True, null=True, default="Perpignan")
     phone_regex = RegexValidator(regex=r'^\d{9,10}$', message="Le numero de telephone doit contenir 10 chiffres")
     telephone = models.CharField(validators=[phone_regex,], max_length=10, blank=True)  # validators should be a list
-    description = models.TextField(null=True, blank=True)
 
     date_registration = models.DateTimeField(verbose_name="Date de création", editable=False)
 
-    inscrit_newsletter = models.BooleanField(verbose_name="J'accepte de recevoir des emails de PacteACVI", default=False)
+    inscrit_newsletter = models.BooleanField(verbose_name="J'accepte de recevoir des emails de UPPM", default=False)
     accepter_conditions = models.BooleanField(verbose_name="J'ai lu et j'accepte les conditions d'utilisation du site", default=False, null=False)
     accepter_annuaire = models.BooleanField(verbose_name="J'accepte d'apparaitre dans l'annuaire du site et la carte et rend mon profil visible par tous", default=True)
 
