@@ -535,16 +535,6 @@ def inscription_newsletter(request):
 def modifier_message(request, id, type):
     if type == 'general':
         obj = MessageGeneral.objects.get(id=id)
-    elif type == 'permacat':
-        if not request.user.is_membre_collectif:
-            return render(request, "notuppm")
-        obj = MessageGeneraluppm.objects.get(id=id)
-    elif type == 'rtg':
-        if not request.user.is_rtg:
-            return render(request, "notRTG.html")
-        obj = MessageGeneralRTG.objects.get(id=id)
-
-
     elif type == 'conversation':
         obj = Message.objects.get(id=id)
     else:

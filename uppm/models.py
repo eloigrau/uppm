@@ -110,7 +110,7 @@ class Profil(AbstractUser):
 @receiver(post_save, sender=Profil)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        for suiv in ['articles', ]:
+        for suiv in ['articles', '']:
             suivi, created = Suivis.objects.get_or_create(nom_suivi=suiv)
             actions.follow(instance, suivi, actor_only=True)
 
