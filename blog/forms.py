@@ -108,11 +108,11 @@ class ArticleForm(forms.ModelForm):
 
 
 class ArticleChangeForm(forms.ModelForm):
-    estPublic = forms.ChoiceField(choices=((1, "Article public"), (0, "Article réserve aux membres du collectif")), label='', required=True)
+    #estPublic = forms.ChoiceField(choices=((1, "Article public"), (0, "Article réserve aux membres du collectif")), label='', required=True)
 
     class Meta:
         model = Article
-        fields = ['categorie', 'titre', 'contenu', 'start_time', 'estModifiable', 'estArchive', 'estPublic']
+        fields = ['categorie', 'titre', 'contenu', 'start_time', 'estModifiable', 'estArchive',]
         widgets = {
             'contenu': SummernoteWidget(),
               'start_time': forms.DateInput(attrs={'type':"datepicker", }),
