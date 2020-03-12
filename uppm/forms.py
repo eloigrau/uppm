@@ -45,7 +45,6 @@ class ProducteurChangeForm(UserChangeForm):
 
     def __init__(self, *args, **kargs):
         super(ProducteurChangeForm, self).__init__(*args, **kargs)
-        self.fields['description'].strip = False
 
     class Meta:
         model = Profil
@@ -71,7 +70,6 @@ class ProducteurChangeForm_admin(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(ProducteurChangeForm_admin, self).__init__(*args, **kwargs)
-        self.fields['description'].strip = False
 
 class ContactForm(forms.Form):
     sujet = forms.CharField(max_length=100, label="Sujet",)
